@@ -6,6 +6,7 @@
     margin: 0 0 16px;
     font-size: 40px;
     text-transform: uppercase;
+    font-weight: 400;
 }
 
 .price__tagline {
@@ -91,6 +92,7 @@
     .price__title {
         margin-bottom: 8px;
         font-size: 20px;
+        font-weight: 400;
     }
     
     .price__tagline {
