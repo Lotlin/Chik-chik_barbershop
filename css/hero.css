@@ -11,6 +11,10 @@
     font-weight: 400;
 }
 
+.hero__slider {
+    min-height: 372px;
+}
+
 @media (max-width: 768px) {
     .hero {
         padding: 40px 0;
