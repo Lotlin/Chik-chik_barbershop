@@ -1,0 +1,36 @@
+.hero {
+    padding: 62px 0;
+}
+
+.hero__title {
+    max-width: 904px;
+    margin: 0 0 36px;
+
+    font-size: 54px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 40px 0;
+    }
+
+    .hero__title {
+        margin-bottom: 24px;
+
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 560px) {
+    .hero {
+        padding: 32px 0;
+    }
+
+    .hero__title {
+        max-width: 420px;
+        margin-bottom: 16px;
+
+        font-size: 24px;
+    }
+}
