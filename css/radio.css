@@ -33,11 +33,26 @@
 }
 
 .radio__label--specialist {
+    position: relative;
     padding-left: 52px;
+}
+
+.radio__label--specialist::before {
+    position: absolute;
+    content: '';
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    border-radius: 50%;
+    display: block;
+    height: 36px;
+    width: 36px;
+    
     background-image: var(--bg-image);
-    background-position: 8px;
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: 36px;
+    background-size: cover;
 }
 
 @media(max-width: 768px) {
@@ -48,6 +63,10 @@
 
     .radio__label--specialist {
         padding-left: 40px;
-        background-size: 24px;
+    }
+
+    .radio__label--specialist::before {
+        height: 24px;
+        width: 24px;
     }
 }
