@@ -76,7 +76,7 @@ const renderTime = (wrapper, data) => {
 
 export const initReserve = () => {
     const reserveForm = document.querySelector('.reserve__form');
-    const { fieldspec, fielddate, fieldmonth, fieldday, fieldtime, btn } = reserveForm;
+    const { fieldservice, fieldspec, fielddate, fieldmonth, fieldday, fieldtime, btn } = reserveForm;
 
     addDisabled([fieldspec, fielddate, fieldmonth, fieldday, fieldtime, btn]);
 
@@ -137,4 +137,40 @@ export const initReserve = () => {
             removeDisabled([btn]);
         }
     })
+
+    reserveForm.addEventListener('submit', async event => {
+        event.preventDefault();
+
+        const formData = new FormData(reserveForm);
+        const json = JSON.stringify(Object.fromEntries(formData));
+
+        const response = await fetch(`${API_URL}/api/order`, {
+            method: 'post',
+            body: json,
+        });
+
+        const data = await response.json();
+
+        addDisabled([
+            fieldservice, 
+            fieldspec, 
+            fielddate, 
+            fieldmonth, 
+            fieldday, 
+            fieldtime, 
+            btn,
+        ]);
+
+        const success = document.createElement('p');
+        success.textContent = `
+            Спасибо за бронь #${data.id}!
+            Ждём вас ${new Intl.DateTimeFormat('ru-RU', {
+                month: 'long',
+                day: 'numeric',
+            }).format(new Date(`${data.month}/${data.day}`))}, 
+            время ${data.time}            
+        `;
+
+        reserveForm.append(success);
+    });
 }
