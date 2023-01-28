@@ -32,12 +32,12 @@
     opacity: 0.3;
 }
 
-.radio__label--specialist {
+.radio__label--spec {
     position: relative;
     padding-left: 52px;
 }
 
-.radio__label--specialist::before {
+.radio__label--spec::before {
     position: absolute;
     content: '';
     left: 8px;
@@ -61,11 +61,11 @@
         font-size: 12px;
     }
 
-    .radio__label--specialist {
+    .radio__label--spec {
         padding-left: 40px;
     }
 
-    .radio__label--specialist::before {
+    .radio__label--spec::before {
         height: 24px;
         width: 24px;
     }

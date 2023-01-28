@@ -1,1 +1,1 @@
-export const API_URL = 'https://outgoing-spice-plum.glitch.me';
+export const API_URL = 'https://eager-unruly-friend.glitch.me/';
