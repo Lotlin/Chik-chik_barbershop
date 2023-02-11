@@ -1,6 +1,8 @@
 import { API_URL } from "./const.js";
 import { addPreload, removePreload } from "./util.js";
 
+const year = new Date().getFullYear();
+
 const addDisabled = (arr) => {
     arr.forEach(elem => {
         elem.disabled = true;
@@ -24,7 +26,7 @@ const renderSpec = (wrapper, data) => {
             <span class="radio__label radio__label--spec" style="--bg-image: url(${API_URL}${item.img})">${item.name}</span>
         `;
         return label;
-    })
+    });
     wrapper.append(...labels);
 }
 
@@ -33,52 +35,29 @@ const renderMonth = (wrapper, data) => {
         
         const label = document.createElement('label');
         label.classList.add('radio');
-        const months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'] ;
-        const currentMonth = months[month - 1];
-        
-        label.innerHTML = `
-            <input class="radio__input" type="radio" name="month" value="${month}">
-            <span class="radio__label">${currentMonth}</span>
-        `;
-        /*
-        doesn't work properly (IOS)
         label.innerHTML = `
             <input class="radio__input" type="radio" name="month" value = "${month}">
             <span class="radio__label">${new Intl.DateTimeFormat('ru-RU', {
                 month: 'long'
-            }).format(new Date(month))}</span>
+            }).format(new Date(year, month))}</span>
         `;
-        
-        */
         return label;
-    })
+    });
     wrapper.append(...labels);
 }
 
 const renderDay = (wrapper, data, month) => {
-    
     const labels = data.map(day => {
         const label = document.createElement('label')
         label.classList.add('radio');
-        const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'] ;
-        const currentMonth = months[month - 1];
-        
-        label.innerHTML = `
-        <input class="radio__input" type="radio" name="day" value = "${day}">
-        <span class="radio__label">${day} ${currentMonth}</span>
-    `;
-    /*
-        doesn't work properly (IOS)
         label.innerHTML = `
             <input class="radio__input" type="radio" name="day" value = "${day}">
             <span class="radio__label">${new Intl.DateTimeFormat('ru-RU', {
                 month: 'long', day: 'numeric'
-            }).format(new Date(`${month}/${day}`))}</span>
+            }).format(new Date(year, month, day))}</span>
         `;
-        
-    */
         return label;
-    })
+    });
     wrapper.append(...labels);
 }
 
@@ -181,25 +160,15 @@ export const initReserve = () => {
         ]);
 
         const success = document.createElement('p');
-        success.classList.add('service__success');
-
-        /*
-        doesn't work properly (IOS)
         success.textContent = `
             Спасибо за бронь #${data.id}!
             Ждём вас ${new Intl.DateTimeFormat('ru-RU', {
                 month: 'long',
                 day: 'numeric',
-            }).format(new Date(`${data.month}/${data.day}`))}, 
+            }).format(new Date(year, data.month, data.day))}, 
             время ${data.time}    
         `;
-        */
-        const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'] ;
-        const currentMonth = months[data.month - 1];
-        success.textContent = `
-        Спасибо за бронь #${data.id}!
-        Ждём вас ${data.day} ${currentMonth}, время: ${data.time}.
-        `;
+        
         reserveForm.append(success);
     });
 };
